@@ -1,0 +1,157 @@
+
+mqtt:
+  sensor:
+    # Sensors definition
+    - state_topic: "saveeye/telemetry"
+      name: Device Serial Number
+      unique_id: "saveeye_DeviceSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["saveeyeDeviceSerialNumber"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Meter Type
+      unique_id: "saveeye_meterType"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["meterType"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Meter Serial Number
+      unique_id: "saveeye_meterSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["meterSerialNumber"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Device Time
+      unique_id: "saveeye_timeStamp"
+      value_template: '{{ value_json["timestamp"] | as_timestamp | timestamp_custom("%Y-%m-%d %H:%M:%S", true) }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "WiFi Signal Strength"
+      unique_id: "saveeye_wifiRssi"
+      device_class: "signal_strength"
+      state_class: "measurement"
+      unit_of_measurement: "dBm"
+      value_template: "{{ value_json['wifiRssi'] }}"
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Sensors definition
+
+    # Cumulative active consumption
+    - state_topic: "saveeye/telemetry"
+      name: "Active Cumulative Energy Consumption (All lines)"
+      unique_id: "saveeye_activeTotalConsumption_total"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+    # End of Cumulative active consumption
+
+    # Active consumption
+    - state_topic: "saveeye/telemetry"
+      name: Active Consumption (All lines)
+      unique_id: "saveeye_activeActualConsumption_total"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Active consumption
+
+
+    # Extenders definition
+    - state_topic: "saveeye/telemetry"
+      name: Serial Number
+      unique_id: "saveeye_extender_DeviceSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["extendersData"][0]["extenderDeviceId"] }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "Extender 1 Signal Strength"
+      unique_id: "saveeye_extenderRssi"
+      device_class: "signal_strength"
+      state_class: "measurement"
+      unit_of_measurement: "dBm"
+      value_template: '{{ value_json["extendersData"][0]["extenderRssi"] }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender 1 Active Cumulative Energy Consumption
+      unique_id: "saveeye_extender_totalConsumptionkWh"
+      device_class: "energy"
+      state_class: measurement
+      unit_of_measurement: "kWh"
+      icon: mdi:flash
+      value_template: '{{ (value_json["extendersData"][0]["activeTotalConsumption"] / 1000) }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender 1 Active Consumption
+      unique_id: "saveeye_totalpower"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["extendersData"][0]["activeActualConsumption"]}}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender Last Seen
+      unique_id: "saveeye_extender_timeStamp"
+      value_template: '{{ value_json["extendersData"][0]["extenderTimestamp"] | timestamp_local }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+    # End of Extenders definition

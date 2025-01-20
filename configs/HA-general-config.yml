@@ -1,0 +1,714 @@
+# Home Assistant Configuration File for SaveEye Devices
+# 
+# Note: The availability of entities depends on the type of your meter.
+# You can create a custom configuration file or use one of the default configurations provided.
+
+mqtt:
+  sensor:
+    # Sensors definition
+    - state_topic: "saveeye/telemetry"
+      name: Device Serial Number
+      unique_id: "saveeye_DeviceSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["saveeyeDeviceSerialNumber"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Meter Type
+      unique_id: "saveeye_meterType"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["meterType"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Meter Serial Number
+      unique_id: "saveeye_meterSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["meterSerialNumber"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Device Time
+      unique_id: "saveeye_timeStamp"
+      value_template: '{{ value_json["timestamp"] | as_timestamp | timestamp_custom("%Y-%m-%d %H:%M:%S", true) }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "WiFi Signal Strength"
+      unique_id: "saveeye_wifiRssi"
+      device_class: "signal_strength"
+      state_class: "measurement"
+      unit_of_measurement: "dBm"
+      value_template: "{{ value_json['wifiRssi'] }}"
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Sensors definition
+
+    # Cumulative active consumption/production
+    - state_topic: "saveeye/telemetry"
+      name: "Active Cumulative Energy Consumption (All lines)"
+      unique_id: "saveeye_activeTotalConsumption_total"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Consumption L1
+      unique_id: "saveeye_activeTotalConsumption_L1"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalConsumption"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Consumption L2
+      unique_id: "saveeye_activeTotalConsumption_L2"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalConsumption"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Consumption L3
+      unique_id: "saveeye_activeTotalConsumption_L3"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalConsumption"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "Active Cumulative Energy Production (All lines)"
+      unique_id: "saveeye_activeTotalProduction_total"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalProduction"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Production L1
+      unique_id: "saveeye_activeTotalProduction_L1"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalProduction"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Production L2
+      unique_id: "saveeye_activeTotalProduction_L2"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalProduction"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Cumulative Energy Production L3
+      unique_id: "saveeye_activeTotalProduction_L3"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["activeTotalProduction"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Cumulative active consumption/production
+
+    # Cumulative reactive consumption/production
+    - state_topic: "saveeye/telemetry"
+      name: "Reactive Cumulative Energy Consumption (All lines)"
+      unique_id: "saveeye_reactiveTotalConsumption_total"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Consumption L1
+      unique_id: "saveeye_reactiveTotalConsumption_L1"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalConsumption"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Consumption L2
+      unique_id: "saveeye_reactiveTotalConsumption_L2"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalConsumption"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Consumption L3
+      unique_id: "saveeye_reactiveTotalConsumption_L3"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalConsumption"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "Reactive Cumulative Energy Production (All lines)"
+      unique_id: "saveeye_reactiveTotalProduction_total"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalProduction"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Production L1
+      unique_id: "saveeye_reactiveTotalProduction_L1"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalProduction"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Production L2
+      unique_id: "saveeye_reactiveTotalProduction_L2"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalProduction"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Cumulative Energy Production L3
+      unique_id: "saveeye_reactiveTotalProduction_L3"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "Wh"
+      value_template: '{{ value_json["reactiveTotalProduction"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Cumulative reactive consumption/production
+
+    # Active consumption/production
+    - state_topic: "saveeye/telemetry"
+      name: Active Consumption (All lines)
+      unique_id: "saveeye_activeActualConsumption_total"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Consumption L1
+      unique_id: "saveeye_activeActualConsumption_L1"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualConsumption"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Consumption L2
+      unique_id: "saveeye_activeActualConsumption_L2"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualConsumption"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Consumption L3
+      unique_id: "saveeye_activeActualConsumption_L3"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualConsumption"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Production (All lines)
+      unique_id: "saveeye_activeActualProduction_total"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualProduction"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Production L1
+      unique_id: "saveeye_activeActualProduction_L1"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualProduction"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Production L2
+      unique_id: "saveeye_activeActualProduction_L2"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualProduction"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Active Production L3
+      unique_id: "saveeye_activeActualProduction_L3"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["activeActualProduction"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Active consumption/production
+
+    # Reactive consumption/production
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Consumption (All lines)
+      unique_id: "saveeye_reactiveActualConsumption_total"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualConsumption"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Consumption L1
+      unique_id: "saveeye_reactiveActualConsumption_L1"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualConsumption"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Consumption L2
+      unique_id: "saveeye_reactiveActualConsumption_L2"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualConsumption"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Consumption L3
+      unique_id: "saveeye_reactiveActualConsumption_L3"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualConsumption"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Production (All lines)
+      unique_id: "saveeye_reactiveActualProduction_total"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualProduction"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Production L1
+      unique_id: "saveeye_reactiveActualProduction_L1"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualProduction"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Production L2
+      unique_id: "saveeye_reactiveActualProduction_L2"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualProduction"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Reactive Production L3
+      unique_id: "saveeye_reactiveActualProduction_L3"
+      device_class: "reactive_power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["reactiveActualProduction"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Reactive consumption/production
+
+    # RMS Voltage
+    - state_topic: "saveeye/telemetry"
+      name: L1 Voltage
+      unique_id: "saveeye_rmsVoltageL1"
+      device_class: "voltage"
+      state_class: measurement
+      unit_of_measurement: V
+      icon: mdi:sine-wave
+      value_template: '{{ value_json["rmsVoltage"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L2 Voltage
+      unique_id: "saveeye_rmsVoltageL2"
+      device_class: "voltage"
+      state_class: measurement
+      unit_of_measurement: V
+      icon: mdi:sine-wave
+      value_template: '{{ value_json["rmsVoltage"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L3 Voltage
+      unique_id: "saveeye_rmsVoltageL3"
+      device_class: "voltage"
+      state_class: measurement
+      unit_of_measurement: V
+      icon: mdi:sine-wave
+      value_template: '{{ value_json["rmsVoltage"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of RMS Voltage
+
+    # RMS Current
+    - state_topic: "saveeye/telemetry"
+      name: L1 Current
+      unique_id: "saveeye_rmsCurrentL1"
+      device_class: "current"
+      state_class: measurement
+      unit_of_measurement: mA
+      icon: mdi:current-ac
+      value_template: '{{ value_json["rmsCurrent"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L2 Current
+      unique_id: "saveeye_rmsCurrentL2"
+      device_class: "current"
+      state_class: measurement
+      unit_of_measurement: mA
+      icon: mdi:current-ac
+      value_template: '{{ value_json["rmsCurrent"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L3 Current
+      unique_id: "saveeye_rmsCurrentL3"
+      device_class: "current"
+      state_class: measurement
+      unit_of_measurement: mA
+      icon: mdi:current-ac
+      value_template: '{{ value_json["rmsCurrent"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of RMS Current
+
+    # Power Factor
+    - state_topic: "saveeye/telemetry"
+      name: Total Power Factor
+      unique_id: "saveeye_powerFactorTotal"
+      device_class: "power_factor"
+      state_class: measurement
+      unit_of_measurement: "%"
+      icon: mdi:flash
+      value_template: '{{ value_json["powerFactor"]["total"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L1 Power Factor
+      unique_id: "saveeye_powerFactorL1"
+      device_class: "power_factor"
+      state_class: measurement
+      unit_of_measurement: "%"
+      icon: mdi:flash
+      value_template: '{{ value_json["powerFactor"]["L1"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L2 Power Factor
+      unique_id: "saveeye_powerFactorL2"
+      device_class: "power_factor"
+      state_class: measurement
+      unit_of_measurement: "%"
+      icon: mdi:flash
+      value_template: '{{ value_json["powerFactor"]["L2"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L3 Power Factor
+      unique_id: "saveeye_powerFactorL3"
+      device_class: "power_factor"
+      state_class: measurement
+      unit_of_measurement: "%"
+      icon: mdi:flash
+      value_template: '{{ value_json["powerFactor"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: L3 Power Factor
+      unique_id: "saveeye_powerFactorL3"
+      device_class: "power_factor"
+      state_class: measurement
+      unit_of_measurement: "%"
+      icon: mdi:flash
+      value_template: '{{ value_json["powerFactor"]["L3"] }}'
+      device:
+        identifiers: "SaveEye-General"
+        manufacturer: "SaveEye.eu"
+        name: "SaveEye Device"
+        model: "V1"
+    # End of Power Factor
+
+    # Extenders definition
+    - state_topic: "saveeye/telemetry"
+      name: Serial Number
+      unique_id: "saveeye_extender_DeviceSerialNumber"
+      device_class: "enum"
+      icon: mdi:identifier
+      value_template: '{{ value_json["extendersData"][0]["extenderDeviceId"] }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: "Extender 1 Signal Strength"
+      unique_id: "saveeye_extenderRssi"
+      device_class: "signal_strength"
+      state_class: "measurement"
+      unit_of_measurement: "dBm"
+      value_template: '{{ value_json["extendersData"][0]["extenderRssi"] }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender 1 Active Cumulative Energy Consumption
+      unique_id: "saveeye_extender_totalConsumptionkWh"
+      device_class: "energy"
+      state_class: measurement
+      unit_of_measurement: "kWh"
+      icon: mdi:flash
+      value_template: '{{ (value_json["extendersData"][0]["activeTotalConsumption"] / 1000) }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender 1 Active Consumption
+      unique_id: "saveeye_totalpower"
+      device_class: "power"
+      state_class: "measurement"
+      unit_of_measurement: "W"
+      value_template: '{{ value_json["extendersData"][0]["activeActualConsumption"]}}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
+
+    - state_topic: "saveeye/telemetry"
+      name: Extender Last Seen
+      unique_id: "saveeye_extender_timeStamp"
+      value_template: '{{ value_json["extendersData"][0]["extenderTimestamp"] | timestamp_local }}'
+      device:
+        identifiers: "Remote"
+        manufacturer: "SaveEye.eu"
+        name: "Saveeye Remote"
+        model: "V1"
