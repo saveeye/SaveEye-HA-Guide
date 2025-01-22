@@ -1,0 +1,93 @@
+{
+    "saveeyeDeviceSerialNumber": "ABCD1234", 
+    "meterType": "/LGF5E360", 
+    "meterSerialNumber": "ABC123", 
+    "timestamp": "2023-10-12T09:05:35Z", 
+    "wifiRssi": -67, 
+    "activeActualConsumption": {
+        "total": 666, 
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "activeActualProduction": {
+        "total": 666, 
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "activeTotalConsumption": {
+        "total": 666, 
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "activeTotalProduction": {
+        "total": 666,
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "reactiveActualConsumption": {
+        "total": 666, 
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "reactiveActualProduction": {
+        "total": 666,
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "reactiveTotalConsumption": {
+        "total": 666,
+        "L1": 111,
+        "L2": 222,
+        "L3": 333
+    },
+    "reactiveTotalProduction": {
+        "total": 666, 
+        "L1": 111,
+        "L2": 222,
+        "L3": 333 
+    },
+    "rmsVoltage": {
+        "L1": 229,
+        "L2": 230,
+        "L3": 231 
+    },
+    "rmsCurrent": {
+        "L1": 1,
+        "L2": 2,
+        "L3": 3 
+    },
+    "powerFactor": {
+        "total": 6,
+        "L1": 1, 
+        "L2": 2, 
+        "L3": 3
+    },
+    "extendersData": [
+        {
+            "extenderDeviceId": "E2ABCDEF",
+            "extenderPulses": 3333,
+            "extenderTimestamp": 123445577,
+            "extenderVcc": 94,
+            "extenderadvType": 1,
+            "extenderRssi": -84,
+            "activeActualConsumption": 10,
+            "activeTotalConsumption": 3000
+        },
+        {
+            "extenderDeviceId": "E247FD61",
+            "extenderPulses": 42,
+            "extenderTimestamp": 1741913085,
+            "extenderVcc": 98,
+            "extenderadvType": 2,
+            "extenderRssi": -64,
+            "activeActualConsumption": 10,
+            "activeTotalConsumption": 3000
+        }
+    ]
+}
