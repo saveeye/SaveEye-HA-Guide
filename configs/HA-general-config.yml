@@ -390,7 +390,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualConsumption_total"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualConsumption"]["total"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -403,7 +403,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualConsumption_L1"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualConsumption"]["L1"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -416,7 +416,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualConsumption_L2"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualConsumption"]["L2"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -429,7 +429,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualConsumption_L3"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualConsumption"]["L3"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -442,7 +442,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualProduction_total"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualProduction"]["total"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -455,7 +455,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualProduction_L1"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualProduction"]["L1"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -468,7 +468,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualProduction_L2"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualProduction"]["L2"] }}'
       device:
         identifiers: "SaveEye-General"
@@ -481,7 +481,7 @@ mqtt:
       unique_id: "saveeye_reactiveActualProduction_L3"
       device_class: "reactive_power"
       state_class: "measurement"
-      unit_of_measurement: "W"
+      unit_of_measurement: "var"
       value_template: '{{ value_json["reactiveActualProduction"]["L3"] }}'
       device:
         identifiers: "SaveEye-General"
